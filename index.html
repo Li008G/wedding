@@ -94,23 +94,6 @@
 		    overflow: hidden; /* Скрываем переполнение */
         }
 
-		/* Затемнение фона для лучшей читаемости текста */
-		.hero::before {
-		    content: '';
-		    position: absolute;
-		    top: 0;
-		    left: 0;
-		    width: 100%;
-		    height: 100%;
-		    background: linear-gradient(
-		        to bottom, 
-		        rgba(0, 0, 0, 0.2) 0%, 
-		        rgba(0, 0, 0, 0.3) 50%, 
-		        rgba(0, 0, 0, 0.4) 100%
-		    );
-		    z-index: 1;
-		}
-
         .hero-content {
 		    text-align: center;
 		    max-width: 800px;
@@ -897,12 +880,11 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-			<h1 class="hero-title">Денис & Алина</h1>
         
         <!-- Фотография фона -->
         <div class="couple-photo-container" data-aos="fade-up" data-aos-delay="300">
             <img src="https://yapx.ru/d3aa7fe0-f9fb-4fe6-a9fb-c584c62da748" 
-                 alt="Денис и Алина" 
+                 alt="Фото" 
                  class="couple-photo">
         </div>
        
@@ -1164,6 +1146,7 @@
     </script>
 </body>
 </html>
+
 
 
 
