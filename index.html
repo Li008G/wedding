@@ -101,55 +101,6 @@
 		    position: relative;
         }
 
-		
-				/* Планшеты (средние экраны) */
-				@media (min-width: 481px) and (max-width: 768px) {
-				    .hero {
-				        background: 
-				            url("https://i.yapx.ru/crJdo.jpg")
-				            center center / 
-				            contain 
-				            no-repeat
-				            var(--light-beige);
-				        min-height: 100vh;
-				        height: auto;
-				        padding: 40px 0 60px;
-				    }
-				}
-				
-				/* Мобильные (маленькие экраны) */
-				@media (max-width: 480px) {
-				    .hero {
-				        background: 
-				            url("https://i.yapx.ru/crJdo.jpg")
-				            center center / 
-				            contain 
-				            no-repeat
-				            var(--light-beige);
-				        min-height: 100vh;
-				        height: auto;
-				        padding: 20px 0 40px;
-				    }
-				    
-				    /* Рассчитываем высоту под пропорции фото 4:3 */
-				    .hero::before {
-				        content: '';
-				        display: block;
-				        padding-top: 75%; /* 3/4 = 0.75 = 75% */
-				    }
-				    
-				    .hero-content {
-				        position: absolute;
-				        top: 50%;
-				        left: 50%;
-				        transform: translate(-50%, -50%);
-				        width: 85%;
-				        background: rgba(248, 244, 239, 0.9);
-				        padding: 20px;
-				        border-radius: 10px;
-				        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-				    }
-
         .hero-title {
             font-size: 4.5rem;
             margin-bottom: 20px;
@@ -1158,6 +1109,7 @@
     </script>
 </body>
 </html>
+
 
 
 
