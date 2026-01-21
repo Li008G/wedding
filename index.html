@@ -105,12 +105,21 @@
 		@media (max-width: 768px) {
 		    .hero {
 		        background: 
-		            url("https://i.yapx.ru/crJdo.jpg") /* Новое фото для мобильных */
+		            url("https://i.yapx.ru/ВАШЕ-МОБИЛЬНОЕ-ФОТО.jpg") 
 		            center center / 
-		            cover 
+		            contain /* Полное фото без обрезки */
 		            no-repeat
 		            var(--light-beige);
 		        min-height: 600px;
+		        height: auto; /* Высота по содержимому */
+		        padding: 40px 0; /* Отступы сверху и снизу */
+		    }
+		    
+		    /* Для очень маленьких экранов */
+		    @media (max-height: 700px) {
+		        .hero {
+		            min-height: 100vh; /* Минимум высота экрана */
+		        }
 		    }
 		}
 		
@@ -1137,6 +1146,7 @@
     </script>
 </body>
 </html>
+
 
 
 
