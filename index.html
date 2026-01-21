@@ -101,27 +101,21 @@
 		    position: relative;
         }
 
-		/* Для мобильных устройств (до 768px) */
+		
+		/* Для мобильных устройств (до 768px) - ПОЛНОЕ ФОТО */
 		@media (max-width: 768px) {
 		    .hero {
 		        background: 
-		            url("https://i.yapx.ru/ВАШЕ-МОБИЛЬНОЕ-ФОТО.jpg") 
+		            url("https://i.yapx.ru/crJdo.jpg") /* Ваше мобильное фото */
 		            center center / 
-		            contain /* Полное фото без обрезки */
+		            contain /* ПОЛНОЕ изображение без обрезки */
 		            no-repeat
 		            var(--light-beige);
-		        min-height: 600px;
-		        height: auto; /* Высота по содержимому */
-		        padding: 40px 0; /* Отступы сверху и снизу */
+		        height: auto; /* Авто высота */
+		        min-height: 100vh; /* Минимум весь экран */
+		        padding: 20px 0 40px; /* Отступы сверху и снизу */
+		        align-items: flex-start; /* Контент сверху */
 		    }
-		    
-		    /* Для очень маленьких экранов */
-		    @media (max-height: 700px) {
-		        .hero {
-		            min-height: 100vh; /* Минимум высота экрана */
-		        }
-		    }
-		}
 		
 		@media (max-aspect-ratio: 16/9) {
 		    /* Высокие экраны */
@@ -1146,6 +1140,7 @@
     </script>
 </body>
 </html>
+
 
 
 
