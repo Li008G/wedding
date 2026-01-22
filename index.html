@@ -29,7 +29,6 @@
 
         html {
             scroll-behavior: smooth;
-			width: 100%;
         }
 
         body {
@@ -38,7 +37,6 @@
             line-height: 1.6;
             background-color: #fff;
             overflow-x: hidden;
-			width: 100%;
         }
 
         h1, h2, h3, h4 {
@@ -76,42 +74,47 @@
             transform: translateX(-50%);
         }
 
-        /* Hero Section */
+        /* Hero Section - ИЗМЕНЕНО */
         .hero {
-		    height: 100vh; /* Вся высота экрана */
-		    min-height: 700px;
-		    display: flex;
-		    align-items: center;
-		    justify-content: center;
-		    position: relative;
-		    background-image: url("https://i.yapx.ru/cqAZq.jpg");
-		    background-size: contain; /* Картинка покрывает всю область */
-		    background-position: center center; /* Центрируем изображение */
-		    background-repeat: no-repeat; /* Не повторяем изображение */
-		    background-attachment: fixed; /* Параллакс эффект (опционально) */
-		    width: 100%; /* Во всю ширину */
-		    max-width: 100%; /* Ограничиваем максимальную ширину */
-		    overflow: hidden; /* Скрываем переполнение */
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: 
+                linear-gradient(90deg, 
+                    white 0%, 
+                    white 20%, 
+                    var(--dark-green) 20%, 
+                    var(--dark-green) 80%, 
+                    white 80%, 
+                    white 100%
+                );
         }
 
         .hero-content {
-		    text-align: center;
-		    max-width: 800px;
-		    padding: 0 20px;
-		    position: relative;
+            text-align: center;
+            max-width: 800px;
+            z-index: 2;
+            padding: 0 20px;
+            margin-top: -50px; /* Пустая строка в начале */
         }
 
         .hero-title {
             font-size: 4.5rem;
             margin-bottom: 20px;
             letter-spacing: 3px;
+            color: white; /* Белый текст на зеленом фоне */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero-subtitle {
             font-size: 1.8rem;
             margin-bottom: 40px;
-            color: var(--text-light);
+            color: white; /* Белый текст на зеленом фоне */
             font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .wedding-date {
@@ -119,9 +122,9 @@
             margin-bottom: 40px;
             padding: 20px 40px;
             display: inline-block;
-            border: 2px solid var(--dark-green);
-            color: var(--dark-green);
-            background-color: rgba(1, 50, 32, 0.05);
+            border: 2px solid white;
+            color: white;
+            background-color: rgba(1, 50, 32, 0.3);
         }
 
         .scroll-down {
@@ -132,7 +135,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: var(--dark-green);
+            color: white;
             text-decoration: none;
             font-size: 1.1rem;
         }
@@ -201,7 +204,7 @@
             color: var(--dark-green);
         }
 
-        /* Wedding Details Section */
+        /* Wedding Details Section - ИЗМЕНЕНО */
         .details-container {
             display: flex;
             flex-wrap: wrap;
@@ -211,10 +214,10 @@
 
         .detail-card {
             flex: 1;
-            min-width: 300px;
-            max-width: 450px;
+            min-width: 250px; /* Уменьшили для 4 карточек */
+            max-width: 280px; /* Уменьшили для 4 карточек */
             background-color: var(--light-beige);
-            padding: 40px 30px;
+            padding: 30px 20px; /* Уменьшили отступы */
             border-radius: 10px;
             box-shadow: 0 10px 30px var(--shadow);
             text-align: center;
@@ -227,25 +230,27 @@
         }
 
         .detail-icon {
-            font-size: 3.5rem;
+            font-size: 2.5rem; /* Уменьшили иконки */
             color: var(--dark-green);
-            margin-bottom: 20px;
-        }
-
-        .detail-title {
-            font-size: 1.8rem;
             margin-bottom: 15px;
         }
 
+        .detail-title {
+            font-size: 1.5rem; /* Уменьшили размер */
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
         .detail-time {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.3rem; /* Уменьшили размер */
+            margin-bottom: 8px;
             color: var(--text-light);
         }
 
         .detail-place {
-            font-size: 1.2rem;
+            font-size: 1rem; /* Уменьшили размер */
             color: var(--text-dark);
+            line-height: 1.4;
         }
 
         /* Dress Code Section */
@@ -454,7 +459,7 @@
         .contacts-column {
             flex: 1;
             min-width: 250px;
-			text-align: center !important;
+            text-align: center !important;
         }
 
         .contacts-column h3 {
@@ -464,7 +469,7 @@
         }
 
         .contact-info {
-		    text-align: center;
+            text-align: center;
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -474,7 +479,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-			justify-content: center;
+            justify-content: center;
         }
 
         .contact-item i {
@@ -525,7 +530,8 @@
         .countdown-title {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: var(--dark-green);
+            color: white; /* Белый цвет на зеленом фоне */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .countdown {
@@ -543,20 +549,22 @@
         .countdown-number {
             font-size: 2.2rem;
             font-weight: 700;
-            color: var(--dark-green);
+            color: white; /* Белый цвет на зеленом фоне */
             width: 80px;
             height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba(1, 50, 32, 0.1);
+            background-color: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .countdown-label {
             margin-top: 8px;
             font-size: 0.9rem;
-            color: var(--text-light);
+            color: rgba(255, 255, 255, 0.9); /* Светлый белый */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         /* Responsive Styles */
@@ -576,11 +584,28 @@
             .section-title {
                 font-size: 2.5rem;
             }
+            
+            .detail-card {
+                min-width: 220px;
+                max-width: 240px;
+            }
         }
 
         @media (max-width: 768px) {
             section {
                 padding: 60px 0;
+            }
+            
+            .hero {
+                background: 
+                    linear-gradient(90deg, 
+                        white 0%, 
+                        white 10%, 
+                        var(--dark-green) 10%, 
+                        var(--dark-green) 90%, 
+                        white 90%, 
+                        white 100%
+                    );
             }
             
             .hero-title {
@@ -610,9 +635,30 @@
                 height: 70px;
                 font-size: 1.8rem;
             }
+            
+            .details-container {
+                gap: 20px;
+            }
+            
+            .detail-card {
+                min-width: 100%;
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 576px) {
+            .hero {
+                background: 
+                    linear-gradient(90deg, 
+                        white 0%, 
+                        white 5%, 
+                        var(--dark-green) 5%, 
+                        var(--dark-green) 95%, 
+                        white 95%, 
+                        white 100%
+                    );
+            }
+            
             .hero-title {
                 font-size: 2.8rem;
             }
@@ -651,206 +697,207 @@
                 width: 60px;
                 height: 60px;
                 font-size: 1.6rem;
-            }		
-			
-			</style>
-			<style>
-			
-			/* Стили для нового оформления дресс-кода */
-			.dress-category {
-				font-size: 1.8rem;
-				font-weight: 600;
-				color: var(--dark-green);
-				text-align: center;
-				margin-bottom: 15px;
-				font-family: 'Cormorant Garamond', serif;
-				position: relative;
-				padding-bottom: 10px;
-			}
-
-			.dress-category::after {
-				content: '';
-				position: absolute;
-				bottom: 0;
-				left: 50%;
-				transform: translateX(-50%);
-				width: 60px;
-				height: 2px;
-				background-color: var(--dark-green);
-				opacity: 0.5;
-			}
-
-			.dress-image-container {
-				position: relative;
-				width: 200px;
-				height: 290px;
-				margin: 0 auto 20px;
-				border-radius: 3%;
-				overflow: hidden;
-				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-				border: 5px solid var(--light-beige);
-				transition: transform 0.3s ease, box-shadow 0.3s ease;
-			}
-
-			.dress-image-container:hover {
-				transform: translateY(-10px);
-				box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-			}
-
-			.dress-image {
-				width: 100%;
-				height: 100%;
-				object-fit: contain;
-				transition: transform 0.5s ease;
-			}
-
-			.dress-image-container:hover .dress-image {
-				transform: scale(1.1);
-			}
-
-			.image-overlay {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background: linear-gradient(45deg, rgba(1, 50, 32, 0.3), rgba(1, 50, 32, 0.1));
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				opacity: 0;
-				transition: opacity 0.3s ease;
-			}
-
-			.image-overlay i {
-				font-size: 3rem;
-				color: white;
-				text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-			}
-
-			.dress-image-container:hover .image-overlay {
-				opacity: 1;
-			}
-
-			.dress-type {
-				font-size: 1.3rem;
-				font-weight: 500;
-				color: var(--text-dark);
-				text-align: center;
-				margin-top: 10px;
-				line-height: 1.4;
-				max-width: 250px;
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			/* Адаптивность */
-			@media (max-width: 768px) {
-				.dress-category {
-					font-size: 1.6rem;
-				}
-				
-				.dress-image-container {
-					width: 150px;
-					height: 210px;
-				}
-				
-				.dress-type {
-					font-size: 1.0rem;
-				}
-				
-				.dress-type-m {
-					font-size: 1.0rem;
-				}
-			}
-
-			@media (max-width: 576px) {
-				.dress-code-visual {
-					gap: 40px;
-				}
-				
-				.dress-category {
-					font-size: 1.4rem;
-				}
-				
-				.dress-image-container {
-					width: 150px;
-					height: 210px;
-				}
-				
-				.dress-type {
-					font-size: 1.1rem;
-					max-width: 200px;
-				}
-			}
+            }
+        }
     </style>
     <style>
-			.polaroid-photo {
-				margin: 30px auto 40px;
-				transform: rotate(-2deg);
-				transition: transform 0.3s ease;
-				display: inline-block; /* Меняем на inline-block */
-			}
+        /* Стили для нового оформления дресс-кода */
+        .dress-category {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--dark-green);
+            text-align: center;
+            margin-bottom: 15px;
+            font-family: 'Cormorant Garamond', serif;
+            position: relative;
+            padding-bottom: 10px;
+        }
 
-			.polaroid-photo:hover {
-				transform: rotate(0deg) scale(1.05);
-			}
+        .dress-category::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--dark-green);
+            opacity: 0.5;
+        }
 
-			.polaroid-inner {
-			background: white;
-			padding: 15px 15px 50px;
-			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-			border-radius: 2px;
-			display: inline-block; /* Делаем рамку по размеру содержимого */
-			}
+        .dress-image-container {
+            position: relative;
+            width: 200px;
+            height: 290px;
+            margin: 0 auto 20px;
+            border-radius: 3%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 5px solid var(--light-beige);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-			.polaroid-img {
-				width: 400px;
-				height: 440px;
-				object-fit: cover;
-				display: block;
-				filter: sepia(0.1);
-			}
+        .dress-image-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
 
-			.polaroid-caption {
-				text-align: center;
-				margin-top: 15px;
-				font-family: 'Cormorant Garamond', serif;
-				font-size: 1.3rem;
-				color: var(--dark-green);
-				font-style: italic;
-			}
-			
-			 /* Адаптивность */
-		  @media (max-width: 250px) {
-			.polaroid-container {
-			  margin: 20px 0 30px;
-			}
-			
-			.polaroid-img {
-			  height: 350px; /* Уменьшаем высоту для планшетов */
-			}
-		  }
+        .dress-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
 
-		  @media (max-width: 250px) {
-			.polaroid-img {
-			  height: 280px; /* Уменьшаем высоту для мобильных */
-			}
-			}
-			
-		.custom-icon-img {
-			width: 70px;
-			height: 70px;
-			object-fit: contain;
-			filter: brightness(0) saturate(100%) invert(8%) sepia(85%) saturate(900%) hue-rotate(110deg) brightness(98%) contrast(89%);
-		}
+        .dress-image-container:hover .dress-image {
+            transform: scale(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(1, 50, 32, 0.3), rgba(1, 50, 32, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-overlay i {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dress-image-container:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .dress-type {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-align: center;
+            margin-top: 10px;
+            line-height: 1.4;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .dress-category {
+                font-size: 1.6rem;
+            }
+            
+            .dress-image-container {
+                width: 150px;
+                height: 210px;
+            }
+            
+            .dress-type {
+                font-size: 1.0rem;
+            }
+            
+            .dress-type-m {
+                font-size: 1.0rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .dress-code-visual {
+                gap: 40px;
+            }
+            
+            .dress-category {
+                font-size: 1.4rem;
+            }
+            
+            .dress-image-container {
+                width: 150px;
+                height: 210px;
+            }
+            
+            .dress-type {
+                font-size: 1.1rem;
+                max-width: 200px;
+            }
+        }
+    </style>
+    <style>
+        .polaroid-photo {
+            margin: 30px auto 40px;
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .polaroid-photo:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .polaroid-inner {
+            background: white;
+            padding: 15px 15px 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .polaroid-img {
+            width: 400px;
+            height: 440px;
+            object-fit: cover;
+            display: block;
+            filter: sepia(0.1);
+        }
+
+        .polaroid-caption {
+            text-align: center;
+            margin-top: 15px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--dark-green);
+            font-style: italic;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .polaroid-container {
+                margin: 20px 0 30px;
+            }
+            
+            .polaroid-img {
+                width: 300px;
+                height: 330px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .polaroid-img {
+                width: 250px;
+                height: 275px;
+            }
+        }
+        
+        .custom-icon-img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(8%) sepia(85%) saturate(900%) hue-rotate(110deg) brightness(98%) contrast(89%);
+        }
     </style>
 </head>
 <body>
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-       
+            <!-- Пустая строка реализована через margin-top в CSS -->
             <p class="hero-subtitle">Мы счастливы пригласить Вас разделить с нами радость самого важного дня в нашей жизни — нашей свадьбы, которая состоится</p>
             <div class="wedding-date">26 июня 2026</div>
             <h1 class="hero-title">Алексей & Линда</h1>
@@ -887,40 +934,65 @@
     <section class="story" id="story">
         <div class="container">
             <div class="story-content">
-			  <div class="polaroid-photo" data-aos="fade-up" data-aos-delay="300">
-				<div class="polaroid-inner">
-					<img src="https://i.yapx.ru/cjV0y.jpg" 
-						 alt="Фото" 
-						 class="polaroid-img">
-					<div class="polaroid-caption">Алексей & Линда</div>
-				</div>
-			  </div>         
-			  <div class="polaroid-photo" data-aos="fade-up" data-aos-delay="300">
-				<div class="polaroid-inner">
-					<img src="https://i.yapx.ru/cjiN9.jpg" 
-						 alt="Фото" 
-						 class="polaroid-img">
-					<div class="polaroid-caption">Алексей & Линда</div>
-				</div>
-			  </div>
+                <div class="polaroid-photo" data-aos="fade-up" data-aos-delay="300">
+                    <div class="polaroid-inner">
+                        <img src="https://i.yapx.ru/cjV0y.jpg" 
+                             alt="Фото" 
+                             class="polaroid-img">
+                        <div class="polaroid-caption">Алексей & Линда</div>
+                    </div>
+                </div>         
+                <div class="polaroid-photo" data-aos="fade-up" data-aos-delay="300">
+                    <div class="polaroid-inner">
+                        <img src="https://i.yapx.ru/cjiN9.jpg" 
+                             alt="Фото" 
+                             class="polaroid-img">
+                        <div class="polaroid-caption">Алексей & Линда</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Wedding Details Section -->
+    <!-- Wedding Details Section - ИЗМЕНЕНО -->
     <section class="details" id="details">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">План мероприятия</h2>
             <div class="details-container">
+                <!-- Блок 1: Выкуп невесты -->
+                <div class="detail-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="detail-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="detail-title">Выкуп невесты</h3>
+                    <p class="detail-subtitle">Традиционный обряд</p>
+                    <p class="detail-time">12:00</p>
+                    <p class="detail-place">Дом невесты</p>
+                </div>
+                
+                <!-- Блок 2: Церемония бракосочетания -->
                 <div class="detail-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="detail-icon">
-						<img src="https://i.yapx.ru/cjnLz.png" alt="Иконка" class="custom-icon-img">
-					</div>
+                        <img src="https://i.yapx.ru/cjnLz.png" alt="Иконка" class="custom-icon-img">
+                    </div>
                     <h3 class="detail-title">Церемония бракосочетания</h3>
                     <p class="detail-subtitle">Торжественная регистрация</p>
                     <p class="detail-time">14:30</p>
                     <p class="detail-place">Город Буинск, ул. Розы Люксембург, 111</p>
                 </div>
+                
+                <!-- Блок 3: Фотосессия с молодоженами -->
+                <div class="detail-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="detail-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="detail-title">Фотосессия с молодоженами</h3>
+                    <p class="detail-subtitle">Совместные фотографии</p>
+                    <p class="detail-time">15:00</p>
+                    <p class="detail-place">Город Буинск, Центральный парк</p>
+                </div>
+                
+                <!-- Блок 4: Банкет -->
                 <div class="detail-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="detail-icon">
                         <i class="fas fa-glass-cheers"></i>
@@ -940,33 +1012,33 @@
             <h2 class="section-title" data-aos="fade-up">Дресс-код</h2>
             <div class="dress-code-content">
                 <p class="dress-code-text" data-aos="fade-up">Для создания гармонии в наших фотографиях и атмосфере праздника, мы будем рады, если вы поддержите цветовую палитру нашего дня.</p>
-				<div class="dress-code-visual">
-					<div class="dress-item" data-aos="fade-right" data-aos-delay="200">
-						<div class="dress-category">Женщины</div>
-						<div class="dress-image-container">
-							<img src="https://i.yapx.ru/cjXcj.png" 
-								 alt="Фото" 
-								 class="dress-image">
-							<div class="image-overlay">
-								<i class="fas fa-check-circle"></i>
-							</div>
-						</div>
-						<div class="dress-type-m">Платье/костюм в зеленых тонах</div>
-					</div>
+                <div class="dress-code-visual">
+                    <div class="dress-item" data-aos="fade-right" data-aos-delay="200">
+                        <div class="dress-category">Женщины</div>
+                        <div class="dress-image-container">
+                            <img src="https://i.yapx.ru/cjXcj.png" 
+                                 alt="Фото" 
+                                 class="dress-image">
+                            <div class="image-overlay">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="dress-type-m">Платье/костюм в зеленых тонах</div>
+                    </div>
     
-					<div class="dress-item" data-aos="fade-left" data-aos-delay="400">
-						<div class="dress-category">Мужчины</div>
-						<div class="dress-image-container">
-							<img src="https://i.yapx.ru/cjfCQ.png" 
-								 alt="Фото" 
-								 class="dress-image">
-							<div class="image-overlay">
-								<i class="fas fa-check-circle"></i>
-							</div>
-						</div>
-						<div class="dress-type-m">Классический костюм/рубашка,  брюки и галстук в зеленых тонах</div>
-					</div>
-				</div>
+                    <div class="dress-item" data-aos="fade-left" data-aos-delay="400">
+                        <div class="dress-category">Мужчины</div>
+                        <div class="dress-image-container">
+                            <img src="https://i.yapx.ru/cjfCQ.png" 
+                                 alt="Фото" 
+                                 class="dress-image">
+                            <div class="image-overlay">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="dress-type-m">Классический костюм/рубашка, брюки и галстук в зеленых тонах</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1023,7 +1095,7 @@
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span style="text-align: center;">+7 (950) 310-30-23</span>
+                            <span>+7 (950) 310-30-23</span>
                         </div>
                         <div class="contact-item">
                             <i class="fab fa-telegram"></i>
@@ -1038,95 +1110,6 @@
         </div>
     </footer>
 
-
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-
-        // Countdown Timer
-        function updateCountdown() {
-            const weddingDate = new Date('June 26, 2026 14:30:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = weddingDate - now;
-            
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
-        
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-        updateCountdown(); // Initial call
-
-        // RSVP Form Submission
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // In a real implementation, you would send this data to a server
-            // For demo purposes, we'll just show an alert
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const attendance = formData.get('attendance');
-            
-            alert(`Спасибо, ${name}! Ваш ответ "${attendance === 'attending' ? 'Буду присутствовать' : 'Не смогу присутствовать'}" успешно отправлен.`);
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Lazy loading for images
-        document.addEventListener("DOMContentLoaded", function() {
-            const images = document.querySelectorAll('img');
-            
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-            
-            images.forEach(img => {
-                if (img.dataset.src) {
-                    imageObserver.observe(img);
-                }
-            });
-        });
-    </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
