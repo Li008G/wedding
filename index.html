@@ -104,7 +104,7 @@
     opacity: 1;
 }
 
-/* Правая верхняя картинка - исправлено */
+/* Правая верхняя картинка */
 .hero-intro::before {
     content: '';
     position: absolute;
@@ -116,14 +116,14 @@
     background-repeat: no-repeat;
     background-position: right top;
     background-size: contain;
-    z-index: 0; /* Изменено с 1 на 0 */
+    z-index: 1;
     opacity: 1;
 }
 
-/* Контейнер для контента - убран белый фон */
+/* Контейнер для контента */
 .hero-intro .container {
     position: relative;
-    z-index: 1; /* Увеличено для отображения поверх фона */
+    z-index: 2;
     max-width: 850px;
     width: 85%;
     margin: 0 auto;
@@ -168,6 +168,7 @@
     object-fit: cover;
 }
 
+/* Стрелка - без белого фона */
 .intro-scroll-down {
     display: flex;
     flex-direction: column;
@@ -178,17 +179,19 @@
     margin-top: 30px;
     position: relative;
     z-index: 2;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 12px 25px;
-    border-radius: 30px;
+    /* Убраны все свойства белого фона: */
+    /* background-color: rgba(255, 255, 255, 0.95); */
+    /* padding: 12px 25px; */
+    /* border-radius: 30px; */
+    /* border: 1px solid rgba(1, 50, 32, 0.1); */
     transition: var(--transition);
-    border: 1px solid rgba(1, 50, 32, 0.1);
 }
 
 .intro-scroll-down:hover {
-    background-color: white;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    transform: translateY(-3px);
+    /* Убраны эффекты, связанные с белым фоном: */
+    /* background-color: white; */
+    /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); */
+    transform: translateY(5px); /* Оставил только движение вниз */
 }
 
 .intro-scroll-down i {
@@ -206,29 +209,28 @@
 /* Адаптивность */
 @media (max-width: 1200px) {
     .hero-intro::after {
-        width: 250px;
-        height: 250px;
+        width: 350px;
+        height: 350px;
     }
     
-    .hero-intro .decorative-top-right {
-        width: 200px;
-        height: 200px;
+    .hero-intro::before {
+        width: 350px;
+        height: 350px;
     }
 }
 
 @media (max-width: 992px) {
     .hero-intro::after {
-        width: 200px;
-        height: 200px;
+        width: 280px;
+        height: 280px;
     }
     
-    .hero-intro .decorative-top-right {
-        width: 180px;
-        height: 180px;
+    .hero-intro::before {
+        width: 280px;
+        height: 280px;
     }
     
     .hero-intro .container {
-        padding: 35px 40px;
         width: 90%;
     }
     
@@ -244,19 +246,17 @@
     }
     
     .hero-intro::after {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
     }
     
-    .hero-intro .decorative-top-right {
-        width: 140px;
-        height: 140px;
+    .hero-intro::before {
+        width: 200px;
+        height: 200px;
     }
     
     .hero-intro .container {
-        padding: 25px 30px;
         width: 95%;
-        background-color: rgba(255, 255, 255, 0.97);
     }
     
     .couple-names {
@@ -276,25 +276,22 @@
     .intro-scroll-down {
         font-size: 1rem;
         margin-top: 25px;
-        padding: 10px 20px;
     }
 }
 
 @media (max-width: 576px) {
     .hero-intro::after {
-        width: 120px;
-        height: 120px;
+        width: 160px;
+        height: 160px;
     }
     
-    .hero-intro .decorative-top-right {
-        width: 110px;
-        height: 110px;
+    .hero-intro::before {
+        width: 160px;
+        height: 160px;
     }
     
     .hero-intro .container {
-        padding: 20px 25px;
         width: 100%;
-        border-radius: 15px;
     }
     
     .couple-names {
@@ -314,7 +311,6 @@
     
     .intro-scroll-down {
         font-size: 0.95rem;
-        padding: 8px 18px;
     }
     
     .intro-scroll-down i {
@@ -324,13 +320,13 @@
 
 @media (max-width: 480px) {
     .hero-intro::after {
-        width: 100px;
-        height: 100px;
+        width: 130px;
+        height: 130px;
     }
     
-    .hero-intro .decorative-top-right {
-        width: 90px;
-        height: 90px;
+    .hero-intro::before {
+        width: 130px;
+        height: 130px;
     }
     
     .couple-names {
@@ -348,20 +344,19 @@
     
     .intro-scroll-down {
         font-size: 0.9rem;
-        padding: 7px 15px;
     }
 }
 
 /* Для очень маленьких экранов */
 @media (max-width: 360px) {
     .hero-intro::after {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
     }
     
-    .hero-intro .decorative-top-right {
-        width: 70px;
-        height: 70px;
+    .hero-intro::before {
+        width: 100px;
+        height: 100px;
     }
     
     .couple-names {
@@ -384,9 +379,9 @@
         height: 120px;
     }
     
-    .hero-intro .decorative-top-right {
-        width: 110px;
-        height: 110px;
+    .hero-intro::before {
+        width: 120px;
+        height: 120px;
     }
     
     .couple-names {
@@ -1556,6 +1551,7 @@
     </script>
 </body>
 </html>
+
 
 
 
