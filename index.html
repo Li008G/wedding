@@ -1016,42 +1016,16 @@
             }
         }
 
-        /* Добавьте эти стили в конец вашего CSS */
-
-/* Обеспечиваем правильный контекст позиционирования для секций */
-.hero-intro, .main-content, .story, .details, .dress-code, .rsvp {
+/* БЫСТРОЕ ИСПРАВЛЕНИЕ - добавьте это в самый конец CSS */
+.hero-intro {
     position: relative;
+    overflow: hidden !important;
     z-index: 1;
 }
 
-/* Увеличиваем z-index для основного контента в каждой секции */
-.hero-intro > .container,
-.main-content > .container,
-.story > .container,
-.details > .container,
-.dress-code > .container,
-.rsvp > .container {
+.hero-intro > .container {
     position: relative;
     z-index: 10;
-}
-
-/* Специально для hero-intro добавьте overflow: hidden */
-.hero-intro {
-    overflow: hidden !important;
-}
-
-/* Для мобильных устройств - дополнительная защита */
-@media (max-width: 768px) {
-    .hero-intro {
-        overflow: hidden !important;
-    }
-    
-    /* Можно скрыть декорации на очень маленьких экранах */
-    @media (max-width: 480px) {
-        .deco {
-            opacity: 0.7;
-        }
-    }
 }
     </style>
     <style>
@@ -1437,6 +1411,7 @@
     </script>
 </body>
 </html>
+
 
 
 
