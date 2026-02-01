@@ -1570,8 +1570,18 @@ window.addEventListener('DOMContentLoaded', async () => {
 function closeModal() {
     document.getElementById('successModal').style.display = 'none';
 }
+			console.log('Скрипт загружен. URL:', GOOGLE_SCRIPT_URL);
+
+// Проверка доступности скрипта при загрузке страницы
+window.addEventListener('load', () => {
+    console.log('Проверяю доступность Google Script...');
+    fetch(GOOGLE_SCRIPT_URL, { method: 'HEAD' })
+        .then(() => console.log('✓ Google Script доступен'))
+        .catch(() => console.error('✗ Google Script недоступен'));
+});
 </script>
 </body>
 </html>
+
 
 
