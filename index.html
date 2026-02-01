@@ -1560,8 +1560,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 // Функции для модального окна
 function showSuccessMessage(name, attendance) {
     const message = attendance === 'attending' 
-        ? `Спасибо, ${name}! Ждем вас на нашем празднике!`
-        : `Спасибо, ${name}! Очень жаль, что вы не сможете быть с нами.`;
+        ? `Спасибо! Ждем вас на нашем празднике!`
+        : `Спасибо, очень жаль, что вы не сможете быть с нами.`;
     
     document.getElementById('successMessage').textContent = message;
     document.getElementById('successModal').style.display = 'flex';
@@ -1573,64 +1573,3 @@ function closeModal() {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
