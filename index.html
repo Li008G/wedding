@@ -1411,15 +1411,6 @@
         setInterval(updateCountdown, 1000);
         updateCountdown(); // Initial call
 
-		console.log('Скрипт загружен. URL:', GOOGLE_SCRIPT_URL);
-
-// Проверка доступности скрипта при загрузке страницы
-window.addEventListener('load', () => {
-    console.log('Проверяю доступность Google Script...');
-    fetch(GOOGLE_SCRIPT_URL, { method: 'HEAD' })
-        .then(() => console.log('✓ Google Script доступен'))
-        .catch(() => console.error('✗ Google Script недоступен'));
-});
 		
       // Конфигурация
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhXt3hm9EGl75jk957l_Wxbxqc4Zo-QuJ4-YAL4Nb21NOS2ZpOUeS3pry5tou50JG4Dg/exec'; // Замените на ваш URL
@@ -1486,15 +1477,6 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
     }
 });
 
-// Функция для показа сообщения об успехе
-function showSuccessMessage(name, attendance) {
-    const message = attendance === 'attending' 
-        ? `Спасибо! Ждем вас на нашем празднике!`
-        : `Спасибо, очень жаль, что вы не сможете быть с нами.`;
-    
-    // Можно заменить alert на красивый попап
-    alert(message);
-}
 
 // Альтернативный метод отправки (через Google Forms эмуляцию)
 async function sendDataAlternative(data) {
@@ -1567,6 +1549,16 @@ window.addEventListener('DOMContentLoaded', async () => {
 </div>
 
 <script>
+	// Функции для модального окна
+function showSuccessMessage(name, attendance) {
+    const message = attendance === 'attending' 
+        ? `Спасибо! Ждем вас на нашем празднике!`
+        : `Спасибо, очень жаль, что вы не сможете быть с нами.`;
+    
+    document.getElementById('successMessage').textContent = message;
+    document.getElementById('successModal').style.display = 'flex';
+}
+
 function closeModal() {
     document.getElementById('successModal').style.display = 'none';
 }
@@ -1582,6 +1574,7 @@ window.addEventListener('load', () => {
 </script>
 </body>
 </html>
+
 
 
 
