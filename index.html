@@ -1411,21 +1411,39 @@
         setInterval(updateCountdown, 1000);
         updateCountdown(); // Initial call
 
-        // RSVP Form Submission
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // In a real implementation, you would send this data to a server
-            // For demo purposes, we'll just show an alert
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const attendance = formData.get('attendance');
-            
-            alert(`Спасибо, ${name}! Ваш ответ "${attendance === 'attending' ? 'Буду присутствовать' : 'Не смогу присутствовать'}" успешно отправлен.`);
-            
-            // Reset form
-            this.reset();
-        });
+// RSVP Form Submission
+document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(this);
+  const name = formData.get('name');
+  const attendance = formData.get('attendance');
+  
+  // Отправка данных в Google Apps Script
+  fetch('https://script.google.com/macros/s/AKfycbym-Pkj9pUo1AH6mALhsNdvzARtKQxKQyM2fT2XPuXKViTqquL2YewLv1YPaX-GfBH4hQ/exec', {
+    method: 'POST',
+    body: JSON.stringify({
+      name: name,
+      attendance: attendance
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(data.result === 'success') {
+      alert(`Спасибо, ${name}! Ваш ответ успешно сохранен.`);
+      this.reset();
+    } else {
+      alert('Произошла ошибка при отправке. Пожалуйста, попробуйте снова.');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Произошла ошибка при отправке. Пожалуйста, попробуйте снова.');
+  });
+});
 
         // Smooth scroll to section
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1447,3 +1465,4 @@
     </script>
 </body>
 </html>
+
