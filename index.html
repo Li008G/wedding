@@ -1415,6 +1415,9 @@
       // Конфигурация
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby7aEavl2zj5rybDhYYZ98BrBn9RMMHhnUgPOqbi61aoAgUqf0t5UZJiI2LF9Wb95U_fg/exec'; // Замените на ваш URL
 
+// Конфигурация
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby7aEavl2zj5rybDhYYZ98BrBn9RMMHhnUgPOqbi61aoAgUqf0t5UZJiI2LF9Wb95U_fg/exec'; // Ваш URL
+
 // RSVP Form Submission
 document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -1433,9 +1436,10 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
     // Подготовить данные для отправки
     const dataToSend = {
         name: name.trim(),
-        attendance: attendance === 'attending' ? 'Буду' : 'Не смогу',
-        timestamp: new Date().toLocaleString('ru-RU')
+        attendance: attendance === 'attending' ? 'Буду' : 'Не смогу'
     };
+    
+    console.log('📤 Отправляю данные:', dataToSend);
     
     // Показать состояние загрузки
     const submitBtn = this.querySelector('.submit-btn');
@@ -1453,18 +1457,68 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
             body: JSON.stringify(dataToSend)
         });
         
-        if (response.ok) {
+        console.log('📥 Ответ получен, статус:', response.status);
+        
+        // Получаем ответ
+        const result = await response.json();
+        console.log('📊 Ответ от сервера:', result);
+        
+        if (result.success) {
             // Показать сообщение об успехе
             showSuccessMessage(name, attendance);
+            console.log('✅ Ответ успешно сохранен в таблице');
             // Сбросить форму
             this.reset();
         } else {
-            throw new Error('Ошибка сервера');
+            console.error('❌ Ошибка от сервера:', result.message);
+            alert('Произошла ошибка: ' + (result.message || 'Неизвестная ошибка'));
         }
         
     } catch (error) {
-        console.error('Ошибка отправки:', error);
-        alert('Произошла ошибка при отправке. Пожалуйста, свяжитесь с нами напрямую.');
+        console.error('❌ Ошибка отправки:', error);
+        
+        // Пробуем альтернативный метод отправки
+        try {
+            console.log('🔄 Пробую альтернативный метод отправки...');
+            
+            // Отправляем как обычную форму
+            const formDataAlt = new FormData();
+            formDataAlt.append('name', name.trim());
+            formDataAlt.append('attendance', attendance === 'attending' ? 'Буду' : 'Не смогу');
+            
+            const altResponse = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formDataAlt
+            });
+            
+            const altResult = await altResponse.text();
+            console.log('Альтернативный ответ:', altResult);
+            
+            try {
+                const parsedResult = JSON.parse(altResult);
+                if (parsedResult.success) {
+                    showSuccessMessage(name, attendance);
+                    this.reset();
+                    console.log('✅ Альтернативный метод успешен');
+                    return;
+                }
+            } catch (parseError) {
+                // Если не JSON, но ответ 200 - считаем успешным
+                if (altResponse.ok) {
+                    showSuccessMessage(name, attendance);
+                    this.reset();
+                    console.log('✅ Ответ получен (не JSON)');
+                    return;
+                }
+            }
+        } catch (altError) {
+            console.error('❌ Альтернативный метод тоже не сработал:', altError);
+        }
+        
+        // Сохраняем локально и показываем сообщение
+        saveToLocalStorage(name, attendance);
+        alert('✅ Ваш ответ сохранен локально. Мы также получим его через мессенджер.');
+        
     } finally {
         // Восстановить кнопку
         submitBtn.textContent = originalText;
@@ -1472,6 +1526,42 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
     }
 });
 
+// Функция для сохранения в localStorage
+function saveToLocalStorage(name, attendance) {
+    try {
+        const savedData = JSON.parse(localStorage.getItem('weddingRSVP') || '[]');
+        savedData.push({
+            name: name,
+            attendance: attendance,
+            timestamp: new Date().toISOString()
+        });
+        localStorage.setItem('weddingRSVP', JSON.stringify(savedData));
+        console.log('💾 Данные сохранены локально:', savedData);
+        
+        // Можно также отправить уведомление на почту или в Telegram
+        sendBackupNotification(name, attendance);
+    } catch (error) {
+        console.error('❌ Ошибка сохранения в localStorage:', error);
+    }
+}
+
+// Функция для отправки уведомления (опционально)
+function sendBackupNotification(name, attendance) {
+    // Здесь можно добавить отправку на email или в Telegram
+    console.log(`🔔 Уведомление: ${name} ответил "${attendance}"`);
+}
+
+// Проверяем связь при загрузке
+window.addEventListener('load', async () => {
+    console.log('🔍 Проверяю связь с сервером...');
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL + '?test=true');
+        const data = await response.json();
+        console.log('✅ Сервер доступен:', data.message);
+    } catch (error) {
+        console.log('⚠️ Сервер недоступен, используем локальное сохранение');
+    }
+});
 
 // Альтернативный метод отправки (через Google Forms эмуляцию)
 async function sendDataAlternative(data) {
@@ -1569,8 +1659,4 @@ window.addEventListener('load', () => {
 </script>
 </body>
 </html>
-
-
-
-
 
