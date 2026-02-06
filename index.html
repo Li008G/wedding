@@ -1399,14 +1399,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="guests">Количество гостей (включая вас)</label>
-                        <input type="number" id="guests" name="guests" min="1" max="10" value="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Ваши пожелания (необязательно)</label>
-                        <textarea id="message" name="message" rows="3" placeholder="Ваши пожелания или комментарии..."></textarea>
-                    </div>
+                    <!-- Убраны поля "Количество гостей" и "Пожелания" -->
                     <button type="submit" class="submit-btn">Отправить ответ</button>
                 </form>
             </div>
@@ -1518,8 +1511,6 @@
                 timestamp: new Date().toLocaleString('ru-RU'),
                 name: document.getElementById('name').value,
                 attendance: document.querySelector('input[name="attendance"]:checked').value,
-                guests: document.getElementById('guests').value || '1',
-                message: document.getElementById('message').value || '',
                 source: 'Свадебный сайт'
             };
             
@@ -1541,7 +1532,6 @@
                 
                 // Сбросить форму
                 document.getElementById('rsvpForm').reset();
-                document.getElementById('guests').value = '1';
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -1581,6 +1571,7 @@
     </script>
 </body>
 </html>
+
 
 
 
