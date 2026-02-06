@@ -1313,7 +1313,7 @@
         </div>
     </section>
 
-    <!-- RSVP Section -->
+   <!-- RSVP Section -->
     <section class="rsvp" id="rsvp">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Будем ждать вашего ответа!</h2>
@@ -1328,20 +1328,40 @@
                         <label>Вы сможете присутствовать? *</label>
                         <div class="attendance-options">
                             <div class="attendance-option">
-                                <input type="radio" id="attending" name="attendance" value="attending" required>
+                                <input type="radio" id="attending" name="attendance" value="Буду" required>
                                 <label for="attending">Буду</label>
                             </div>
                             <div class="attendance-option">
-                                <input type="radio" id="not-attending" name="attendance" value="not-attending" required>
+                                <input type="radio" id="not-attending" name="attendance" value="Не смогу" required>
                                 <label for="not-attending">К сожалению, не смогу</label>
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Количество гостей (включая вас)</label>
+                        <input type="number" id="guests" name="guests" min="1" max="10" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Ваши пожелания (необязательно)</label>
+                        <textarea id="message" name="message" rows="3" placeholder="Ваши пожелания или комментарии..."></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Отправить ответ</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <!-- Модальное окно успешной отправки -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="modal-title">Спасибо за ваш ответ!</h3>
+            <p class="modal-text">Ваш ответ успешно отправлен. Мы с нетерпением ждем встречи с вами на нашей свадьбе!</p>
+            <button class="modal-close-btn" onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -1412,20 +1432,88 @@
         updateCountdown(); // Initial call
 
         // RSVP Form Submission
+        // Функции для модального окна
+        function showModal() {
+            document.getElementById('successModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        // RSVP Form Submission
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // In a real implementation, you would send this data to a server
-            // For demo purposes, we'll just show an alert
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const attendance = formData.get('attendance');
+            // Показать индикатор загрузки
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Отправка...';
+            submitBtn.disabled = true;
             
-            alert(`Спасибо, ${name}! Ваш ответ "${attendance === 'attending' ? 'Буду присутствовать' : 'Не смогу присутствовать'}" успешно отправлен.`);
+            // Собрать данные формы
+            const formData = {
+                timestamp: new Date().toLocaleString('ru-RU'),
+                name: document.getElementById('name').value,
+                attendance: document.querySelector('input[name="attendance"]:checked').value,
+                guests: document.getElementById('guests').value || '1',
+                message: document.getElementById('message').value || '',
+                source: 'Свадебный сайт'
+            };
             
-            // Reset form
-            this.reset();
+            // URL вашего Google Apps Script (замените на свой)
+            const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+            
+            // Отправить данные в Google Таблицу
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                // Показать модальное окно успеха
+                showModal();
+                
+                // Сбросить форму
+                document.getElementById('rsvpForm').reset();
+                document.getElementById('guests').value = '1';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз или свяжитесь с нами напрямую.');
+            })
+            .finally(() => {
+                // Восстановить кнопку
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         });
+
+        // Закрыть модальное окно при клике вне его
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Smooth scroll to section
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
 
         // Smooth scroll to section
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1447,3 +1535,4 @@
     </script>
 </body>
 </html>
+
