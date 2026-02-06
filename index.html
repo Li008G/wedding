@@ -1131,6 +1131,68 @@
 			
             /*filter: brightness(0) saturate(100%) invert(8%) sepia(85%) saturate(900%) hue-rotate(110deg) brightness(98%) contrast(89%);*/
         }
+
+
+
+		/* Стили для модального окна */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-icon {
+            font-size: 3rem;
+            color: #1E5945;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+        }
+        
+        .modal-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .modal-close-btn {
+            padding: 12px 30px;
+            background-color: var(--dark-green);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-close-btn:hover {
+            background-color: #024a30;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -1519,6 +1581,7 @@
     </script>
 </body>
 </html>
+
 
 
 
